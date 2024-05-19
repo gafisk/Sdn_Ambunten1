@@ -1,52 +1,14 @@
-<?php
-session_start();
-include('../config/conn.php');
-if (isset($_POST['submit'])) {
-  $username = mysqli_escape_string($conn, $_POST['username']);
-  $password = mysqli_escape_string($conn, $_POST['password']);
-  if (empty($username) || empty($password)) {
-    $_SESSION['gagal'] = true;
-    $_SESSION['msg'] = "Username Atau Password Tidak Boleh Kosong";
-    header('location:login_admin.php');
-    exit();
-  } else {
-    $check_users = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username'");
-    if (mysqli_num_rows($check_users) > 0) {
-      $query = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username' AND password = '$password'");
-      if (mysqli_num_rows($query) > 0) {
-        $row = mysqli_fetch_assoc($query);;
-        $_SESSION['id_admin'] = $row['id_admin'];
-        $_SESSION['nama_admin'] = $row['nama_admin'];
-        tambah_log($row['id_admin'], "Login");
-        echo '<script>alert("Anda Berhasil Login. Redirecting..."); window.location.href="index.php";</script>';
-        exit();
-      } else {
-        $_SESSION['gagal'] = true;
-        $_SESSION['msg'] = "Password Salah";
-        header('location:login_admin.php');
-        exit();
-      }
-    } else {
-      $_SESSION['gagal'] = true;
-      $_SESSION['msg'] = "Identitas Admin Salah!!!";
-      header('location:login_admin.php');
-      exit();
-    }
-  }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login Perpustakaan</title>
+  <title>Login Sistem</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../Assets/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -60,17 +22,17 @@ if (isset($_POST['submit'])) {
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-heade  r text-center">
-        <a href="login_admin.php" class="h1">ADMIN<br>PERPUSTAKAAN<br><b>SMKN</b> 2 Bangkalan</a>
+        <a href="login_admin.php" class="h1">ADMIN<br>BANK SDN<br><b>Ambunten</b> Barat 1</a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Login Untuk Memulai Aplikasi</p>
         <?php if (isset($_SESSION['gagal']) && $_SESSION['gagal']) : ?>
-          <div class="alert alert-danger alert-dismissible fade show" id="myAlert" role="alert">
-            <strong>Gagal Login</strong> <?= $_SESSION['msg'] ?> .
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+        <div class="alert alert-danger alert-dismissible fade show" id="myAlert" role="alert">
+          <strong>Gagal Login</strong> <?= $_SESSION['msg'] ?> .
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <?php
           unset($_SESSION['gagal']);
           unset($_SESSION['msg']);

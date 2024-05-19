@@ -1,6 +1,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Perpustakaan SMK Negeri 2 Bangkalan</title>
+<title>Bank SDN Ambunten Barat 1</title>
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"

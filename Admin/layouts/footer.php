@@ -1,7 +1,7 @@
           <!-- /.content-wrapper -->
           <footer class="main-footer">
             <strong>Copyright &copy; 2024
-              <a href="#">Perpustakaan SMK Negeri 2 Bangkalan</strong>
+              <a href="#">Bank SD Negeri Ambunten Barat 1</strong>
             <div class="float-right d-none d-sm-inline-block">
               <b>Version</b> Beta
             </div>

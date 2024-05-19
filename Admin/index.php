@@ -1,18 +1,3 @@
-<?php
-session_start();
-include('../config/conn.php');
-if (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin'])) {
-  echo '<script>alert("Silahkan Login Dahulu"); window.location.href="login_admin.php";</script>';
-  exit(); // Hentikan eksekusi script setelah mengarahkan ke halaman login
-}
-
-$jumlah_buku_p = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *, COUNT(*) as jumlah FROM buku WHERE kategori_buku = 'Pendidikan'"));
-$jumlah_buku_np = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *, COUNT(*) as jumlah FROM buku WHERE kategori_buku = 'Non Pendidikan'"));
-$jumlah_siswa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *, COUNT(*) as jumlah FROM users WHERE role_user = 'Siswa'"));
-$jumlah_guru = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *, COUNT(*) as jumlah FROM users WHERE role_user = 'Guru'"));
-$data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_admin) ORDER BY log.id_log DESC LIMIT 10");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +9,8 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
   <div class="wrapper">
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="../Assets/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" />
+      <img class="animation__shake" src="../Assets/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+        width="60" />
     </div>
 
     <!-- Navbar -->
@@ -75,13 +61,14 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3><?= $jumlah_buku_p['jumlah'] ?></h3>
-                  <p>Buku Pendidikan</p>
+                  <h3>4</h3>
+                  <p>Total Penyimpanan</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="daftar-buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="daftar-buku.php" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -89,14 +76,15 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3><?= $jumlah_buku_np['jumlah'] ?></h3>
+                  <h3>1</h3>
 
-                  <p>Buku Non Pendidikan</p>
+                  <p>Total Penarikan</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="daftar-buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="daftar-buku.php" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -104,14 +92,15 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3><?= $jumlah_guru['jumlah'] ?></h3>
+                  <h3>2</h3>
 
                   <p>Total Guru</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="daftar-pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="daftar-pengguna.php" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -119,14 +108,15 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3><?= $jumlah_siswa['jumlah'] ?></h3>
+                  <h3>3</h3>
 
                   <p>Total Siswa</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="daftar-pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="daftar-pengguna.php" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -141,7 +131,7 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="fas fa-chart-pie mr-1"></i>
-                    Sales
+                    Transaksi
                   </h3>
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
@@ -188,19 +178,17 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
                 <div class="card-body">
                   <!-- Conversations are loaded here -->
                   <div class="direct-chat-messages">
-                    <?php foreach ($data_log as $log_data) : ?>
-                      <div class="direct-chat-msg">
-                        <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-left"><?= $log_data['nama_admin'] ?></span>
-                          <span class="direct-chat-timestamp float-right"><?= $log_data['waktu'] ?></span>
-                        </div>
-                        <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">
-                          <?= $log_data['keterangan'] ?>
-                        </div>
-                        <!-- /.direct-chat-text -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">Nama Admin</span>
+                        <span class="direct-chat-timestamp float-right">29-29-29</span>
                       </div>
-                    <?php endforeach ?>
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Keterangan Log
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
                   </div>
                   <!-- /.direct-chat-pane -->
                 </div>
@@ -390,7 +378,7 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
                     <!-- ./col -->
                     <div class="col-4 text-center">
                       <div id="sparkline-3"></div>
-                      <div class="text-white">Sales</div>
+                      <div class="text-white">Transkasi</div>
                     </div>
                     <!-- ./col -->
                   </div>
@@ -404,7 +392,7 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
                 <div class="card-header border-0">
                   <h3 class="card-title">
                     <i class="fas fa-th mr-1"></i>
-                    Sales Graph
+                    Transaksi Graph
                   </h3>
 
                   <div class="card-tools">
@@ -428,19 +416,22 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
                 <div class="card-footer bg-transparent">
                   <div class="row">
                     <div class="col-4 text-center">
-                      <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC" />
+                      <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                        data-fgColor="#39CCCC" />
 
                       <div class="text-white">Mail-Orders</div>
                     </div>
                     <!-- ./col -->
                     <div class="col-4 text-center">
-                      <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC" />
+                      <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                        data-fgColor="#39CCCC" />
 
                       <div class="text-white">Online</div>
                     </div>
                     <!-- ./col -->
                     <div class="col-4 text-center">
-                      <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC" />
+                      <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                        data-fgColor="#39CCCC" />
 
                       <div class="text-white">In-Store</div>
                     </div>
@@ -463,7 +454,8 @@ $data_log = mysqli_query($conn, "SELECT * FROM log INNER JOIN admin using(id_adm
                   <div class="card-tools">
                     <!-- button with a dropdown -->
                     <div class="btn-group">
-                      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"
+                        data-offset="-52">
                         <i class="fas fa-bars"></i>
                       </button>
                       <div class="dropdown-menu" role="menu">

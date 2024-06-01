@@ -20,7 +20,7 @@
         Date.now() + 30 * 60 * 1000
       );
       // eslint-disable-next-line no-alert
-      alert("Selamat Datang di Aplikasi Bank SDN  Barat 1");
+      alert("Selamat Datang di Aplikasi Bank SDN Ambunten Barat 1");
     }
   }, 1000);
 

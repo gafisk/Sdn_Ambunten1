@@ -1,3 +1,41 @@
+<?php
+session_start();
+include('../config/conn.php');
+if (isset($_POST['submit'])) {
+  $username = mysqli_escape_string($conn, $_POST['username']);
+  $password = mysqli_escape_string($conn, $_POST['password']);
+  if (empty($username) || empty($password)) {
+    $_SESSION['gagal'] = true;
+    $_SESSION['msg'] = "Username Atau Password Tidak Boleh Kosong";
+    header('location:login_admin.php');
+    exit();
+  } else {
+    $check_users = mysqli_query($conn, "SELECT * FROM admin WHERE username_admin = '$username'");
+    if (mysqli_num_rows($check_users) > 0) {
+      $query = mysqli_query($conn, "SELECT * FROM admin WHERE username_admin = '$username' AND password_admin = '$password'");
+      if (mysqli_num_rows($query) > 0) {
+        $row = mysqli_fetch_assoc($query);
+        $_SESSION['id_admin'] = $row['id_admin'];
+        $_SESSION['nama_admin'] = $row['nama_admin'];
+        tambah_log($row['nama_admin'] . "Login");
+        echo '<script>alert("Anda Berhasil Login. Redirecting..."); window.location.href="index.php";</script>';
+        exit();
+      } else {
+        $_SESSION['gagal'] = true;
+        $_SESSION['msg'] = "Password Salah";
+        header('location:login_admin.php');
+        exit();
+      }
+    } else {
+      $_SESSION['gagal'] = true;
+      $_SESSION['msg'] = "Identitas Admin Salah!!!";
+      header('location:login_admin.php');
+      exit();
+    }
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,14 +94,14 @@
           </div>
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
       </div>
       </form>
-      <p class="mb-2 ml-2">
+      <!-- <p class="mb-2 ml-2">
         <a href="index.php" class="text-center">Kembali Ke Halaman Depan</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.card-body -->
   </div>

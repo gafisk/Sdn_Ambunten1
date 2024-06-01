@@ -6,9 +6,14 @@ if (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin'])) {
   exit(); // Hentikan eksekusi script setelah mengarahkan ke halaman login
 }
 
+$id_siswa = $_GET['id_siswa'];
+$datas = mysqli_query($conn, "SELECT * FROM mutasi WHERE id_siswa = '$id_siswa' ORDER BY id_mutasi DESC");
+$data_siswa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM siswa WHERE id_siswa = '$id_siswa'"));
+
 ?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
   <?php include('layouts/head.php') ?>
@@ -52,7 +57,7 @@ if (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0">Rincian Mutasi Perorangan</h1>
             </div>
             <!-- /.col -->
           </div>
@@ -67,23 +72,47 @@ if (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin'])) {
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
-              <div class="card p-3">
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Data Mutasi Lengkap <?=$data_siswa['nama_siswa']?></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Tanggal</th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                        <th>Total Saldo</th>
+                        <th>Catatan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      foreach ($datas as $data) : ?>
+                      <tr>
+                        <td><?=$data['tgl_mutasi']?></td>
+                        <td><?=$data['jenis_mutasi']?></td>
+                        <td><?=$data['jumlah']?></td>
+                        <td><?=$data['total_saldo']?></td>
+                        <td><?=$data['catatan']?></td>
+                      </tr>
+                      <?php
+                      endforeach ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Tanggal</th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                        <th>Total Saldo</th>
+                        <th>Catatan</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
               </div>
             </div>
           </div>
@@ -92,8 +121,17 @@ if (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin'])) {
       </section>
       <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-    <?php include('layouts/footer.php') ?>
+
+    <?php include('layouts/footer.php'); ?>
 </body>
 
 </html>
+<script>
+// Ambil elemen alert
+var alert = document.getElementById('myAlert');
+
+// Tutup alert setelah 3 detik
+setTimeout(function() {
+  alert.style.display = 'none';
+}, 10000);
+</script>

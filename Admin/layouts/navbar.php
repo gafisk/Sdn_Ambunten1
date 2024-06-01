@@ -19,25 +19,25 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="tambah-guru.php" class="nav-link">
                       <i class="fas fa-user-graduate nav-icon"></i>
                       <p>Tambah Guru</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="daftar-guru.php" class="nav-link">
                       <i class="fas fa-user-cog nav-icon"></i>
                       <p>Daftar Guru</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="tambah-siswa.php" class="nav-link">
                       <i class="fas fa-users nav-icon"></i>
                       <p>Tambah Siswa</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="daftar-siswa.php" class="nav-link">
                       <i class="fas fa-user-cog nav-icon"></i>
                       <p>Daftar Siswa</p>
                     </a>
@@ -45,30 +45,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-money-bill-wave"></i>
-                  <p>
-                    Kelola Transaksi
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="fas fa-money-check-alt nav-icon"></i>
-                      <p>Penyimanan</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="fas fa-money-bill-wave nav-icon"></i>
-                      <p>Penarikan</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="index.php" class="nav-link">
+                <a href="daftar-saldo.php" class="nav-link">
                   <i class="nav-icon far fa-money-bill-alt"></i>
                   <p>
                     Daftar Saldo Siswa

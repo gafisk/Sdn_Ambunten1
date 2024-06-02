@@ -7,7 +7,7 @@ if (!isset($_SESSION['id_admin']) || empty($_SESSION['id_admin'])) {
 }
 $id_admin = $_SESSION['id_admin'];
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM admin where id_admin = '$id_admin'"));
-tambah_log($data['nama_admin'], "Logout");
+tambah_log($data['nama_admin']. " Logout");
 session_unset();
 session_destroy();
 echo '<script>alert("Anda Logout. Redirecting..."); window.location.href="../index.php";</script>';

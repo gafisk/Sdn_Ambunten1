@@ -7,6 +7,7 @@ $password = "";
 $dbname = "bank_sdnambunten1";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
+mysqli_query($conn, "SET time_zone = '+7:00';");
 
 function tambah_log($keterangan)
 {

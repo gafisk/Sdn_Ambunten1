@@ -131,7 +131,8 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-12">
+          <a href="Admin/login_admin.php">Login disini untuk admin..</a>
+          <div class="col-12 mt-2">
             <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->

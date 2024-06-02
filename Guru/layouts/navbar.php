@@ -33,6 +33,14 @@
                 </ul>
               </li>
               <li class="nav-item">
+                <a href="ganti-password.php" class="nav-link">
+                  <i class="nav-icon fas fa-key"></i>
+                  <p>
+                    Ganti Password
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="logout_guru.php" class="nav-link" onclick="return confirm('Anda Yakin Akan Logout?')">
                   <i class="nav-icon fas fa-power-off"></i>
                   <p>

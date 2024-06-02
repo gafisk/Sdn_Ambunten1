@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($query);
         $_SESSION['id_admin'] = $row['id_admin'];
         $_SESSION['nama_admin'] = $row['nama_admin'];
-        tambah_log($row['nama_admin'] . "Login");
+        tambah_log($row['nama_admin'] . " Login");
         echo '<script>alert("Anda Berhasil Login. Redirecting..."); window.location.href="index.php";</script>';
         exit();
       } else {
@@ -92,8 +92,9 @@ if (isset($_POST['submit'])) {
               </div>
             </div>
           </div>
+          <a href="../index.php">Kembali ke halaman depan..</a>
           <!-- /.col -->
-          <div class="col-12">
+          <div class="col-12 mt-2">
             <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->

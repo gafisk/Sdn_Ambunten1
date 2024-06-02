@@ -10,5 +10,5 @@ $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM siswa where id_sis
 tambah_log($data['nama_siswa'], "Logout");
 session_unset();
 session_destroy();
-echo '<script>alert("Anda Logout. Redirecting..."); window.location.href="../login.php";</script>';
+echo '<script>alert("Anda Logout. Redirecting..."); window.location.href="../index.php";</script>';
 exit();

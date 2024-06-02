@@ -4,7 +4,7 @@
   <a href="#" class="brand-link">
     <img src="../Assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
       style="opacity: 0.8" />
-    <span class="brand-text font-weight-light">Guru</span>
+    <span class="brand-text font-weight-light">Halaman Guru</span>
   </a>
 
   <!-- Sidebar -->
@@ -15,7 +15,7 @@
         <img src="../Assets/dist/img/users.png" class="img-circle elevation-2" alt="User Image" />
       </div>
       <div class="info">
-        <a href="#" class="d-block">Guru</a>
+        <a href="#" class="d-block"><?=$_SESSION['nama_guru']?></a>
       </div>
     </div>
 
